@@ -24,10 +24,8 @@ iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
 # On autorise le ping sortant et entrant (5 requetes par secondes)
-iptables -A OUTPUT -p icmp -m conntrack --ctstate NEW,ESTABLISHED,RELATED -j
-ACCEPT
-iptables -A INPUT -p icmp -m conntrack --ctstate NEW,ESTABLISHED,RELATED -j
-ACCEPT
+iptables -A OUTPUT -p icmp -m conntrack --ctstate NEW,ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p icmp -m conntrack --ctstate NEW,ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p icmp -m limit --limit 5/s -j ACCEPT
 
 # Anti Scan
